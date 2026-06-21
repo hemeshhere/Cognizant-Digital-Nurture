@@ -1,0 +1,13 @@
+What is Big O Notation?
+Big O notation is a mathematical concept used to describe the efficiency and performance of an algorithm. 
+It specifically measures the upper bound of an algorithm's time complexity or space complexity, showing how the runtime or memory requirements grow as the size of the input data (n) increases. 
+It helps developers analyze and predict algorithmic bottlenecks when handling massive datasets, ignoring hardware-specific constraints.
+
+Search Scenarios:
+    Best-Case Scenario: The target element is found on the very first attempt (e.g., it is the first item checked in the array). 
+    The time complexity is O(1).
+
+    Average-Case Scenario: The target element is found somewhere in the middle of the dataset. 
+    This represents typical real-world performance.
+
+    Worst-Case Scenario: The target element is located at the very last position checked, or it does not exist in the dataset at all, forcing the algorithm to perform the absolute maximum number of operations.
