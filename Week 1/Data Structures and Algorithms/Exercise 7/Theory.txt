@@ -1,0 +1,6 @@
+Time Complexity: For a standard linear recursive sequence calculating future value year-by-year (e.g., Value(n) = (1 + rate) * Value(n-1)), the time complexity is O(n), where n is the number of periods (years). 
+    The space complexity is also O(n) due to the call stack memory used by each recursive function call.
+
+Optimization Strategies: While O(n) time is generally acceptable, excessive computation occurs if the system frequently recalculates the forecast for the exact same inputs across different parts of an application. 
+    We can optimize this by using Memoization (caching). By storing previously computed forecasts (or the compounded multipliers) in a data structure like a HashMap, subsequent calls for the same number of years can be retrieved in O(1) time. 
+    Additionally, to avoid call stack overflow for extremely large values of n, the recursive approach can be rewritten iteratively, dropping the space complexity from O(n) down to O(1).
