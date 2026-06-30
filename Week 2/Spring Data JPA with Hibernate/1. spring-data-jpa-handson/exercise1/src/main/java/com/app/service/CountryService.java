@@ -2,8 +2,10 @@ package com.app.service;
 
 import com.app.entity.Country;
 import com.app.repository.CountryRepository;
+import com.app.service.exception.CountryNotFoundException; // Make sure this matches your exception package
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,8 +16,16 @@ public class CountryService {
     @Autowired
     private CountryRepository countryRepository;
 
-    public Optional<Country> findByCountryCode(String code) {
-        return countryRepository.findById(code);
+    // UPDATED METHOD
+    @Transactional
+    public Country findCountryByCode(String countryCode) throws CountryNotFoundException {
+        Optional<Country> result = countryRepository.findById(countryCode);
+        
+        if (!result.isPresent()) {
+            throw new CountryNotFoundException("Country not found with code: " + countryCode);
+        }
+        
+        return result.get();
     }
 
     public Country addCountry(Country country) {
