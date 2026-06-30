@@ -28,10 +28,11 @@ public class CountryService {
         return result.get();
     }
 
-    public Country addCountry(Country country) {
-        return countryRepository.save(country);
+    @Transactional
+    public void addCountry(Country country) {
+        countryRepository.save(country);
     }
-
+    
     public Country updateCountry(String code, Country updatedCountry) {
         if (countryRepository.existsById(code)) {
             updatedCountry.setCoCode(code); // Ensure the code doesn't change

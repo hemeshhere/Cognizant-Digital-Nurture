@@ -17,25 +17,45 @@ public class OrmLearnApplication {
     private static CountryService countryService;
 
     public static void main(String[] args) {
-        // Boot up Spring and grab the context
         ApplicationContext context = SpringApplication.run(OrmLearnApplication.class, args);
-        
-        // Retrieve the service bean from the Spring Context
         countryService = context.getBean(CountryService.class);
         
-        // Invoke the test method
         try {
+            // Your previous test
             getAllCountriesTest();
+            
+            // Your NEW test for Exercise 7
+            testAddCountry();
+            
         } catch (CountryNotFoundException e) {
             LOGGER.error("Error fetching country: {}", e.getMessage());
         }
     }
 
     private static void getAllCountriesTest() throws CountryNotFoundException {
-        LOGGER.info("Start");
-        // Testing the findCountryByCode method with "IN" (Ensure "IN" is in your data.sql!)
+        LOGGER.info("Start getAllCountriesTest");
         Country country = countryService.findCountryByCode("IN");
         LOGGER.debug("Country:{}", country);
-        LOGGER.info("End");
+        LOGGER.info("End getAllCountriesTest\n");
+    }
+
+    // --- NEW METHOD FOR HANDS-ON 7 ---
+    private static void testAddCountry() throws CountryNotFoundException {
+        LOGGER.info("Start testAddCountry");
+        
+        // 1. Create new instance of country
+        Country newCountry = new Country("MM", "Myanmar");
+        
+        // 2. Call service to add the country
+        countryService.addCountry(newCountry);
+        LOGGER.debug("Country successfully saved to database.");
+        
+        // 3. Find the country to verify it was added
+        Country retrievedCountry = countryService.findCountryByCode("MM");
+        
+        // 4. Check/Log the result
+        LOGGER.debug("Retrieved newly added Country: {}", retrievedCountry.getCoName());
+        
+        LOGGER.info("End testAddCountry\n");
     }
 }
