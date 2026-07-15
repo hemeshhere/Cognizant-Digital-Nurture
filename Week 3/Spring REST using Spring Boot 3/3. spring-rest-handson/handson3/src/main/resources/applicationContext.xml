@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="emp1" class="com.example.employeemanagement.Employee">
+        <property name="id" value="101"/>
+        <property name="name" value="Sarah Jenkins"/>
+        <property name="department" value="IT"/>
+        <property name="role" value="Developer"/>
+    </bean>
+
+    <bean id="emp2" class="com.example.employeemanagement.Employee">
+        <property name="id" value="102"/>
+        <property name="name" value="Marcus Allen"/>
+        <property name="department" value="HR"/>
+        <property name="role" value="Manager"/>
+    </bean>
+
+    <bean id="employeeList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="emp1"/>
+                <ref bean="emp2"/>
+            </list>
+        </constructor-arg>
+    </bean>
+</beans>
