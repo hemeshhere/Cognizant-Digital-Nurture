@@ -1,4 +1,4 @@
-package main.java.com.cognizant.loan.controller;
+package com.cognizant.loan.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
